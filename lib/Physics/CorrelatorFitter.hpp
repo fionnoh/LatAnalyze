@@ -79,6 +79,7 @@ public:
     const DMatSample & getCorrelator(const Index i = 0) const;
     const std::vector<DMatSample> & getCorrelators(void) const;
     void setModel(const DoubleModel &model, const Index i = 0);
+    void setModels(const std::vector<DoubleModel> &models);
     const DoubleModel & getModel(const Index i = 0) const;
     void setFitRange(const Index tMin, const Index tMax, const Index i = 0);
     void setCorrelation(const bool isCorrelated, const Index i = 0, 

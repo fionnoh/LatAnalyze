@@ -355,6 +355,20 @@ void CorrelatorFitter::setModel(const DoubleModel &model, const Index i)
     model_[i] = model;
 }
 
+void CorrelatorFitter::setModels(const std::vector<DoubleModel> &models)
+{
+    if (!(models.size() == model_.size()))
+    {
+        LATAN_ERROR(Size, "models size not equal to correlators size");
+    }
+    Index i = 0;
+    for (auto &m: models)
+    {
+        setModel(m, i);
+        i++;
+    }
+}
+
 const DoubleModel & CorrelatorFitter::getModel(const Index i) const
 {
     return model_.at(i);
@@ -412,6 +426,6 @@ void CorrelatorFitter::refreshRanges(void)
     for (Index t = 0; t < nt_; ++t)
     {
         data_->fitPoint((t >= range_[i].first) and (t <= range_[i].second)
-                         and ((t - range_[i].first) % thinning_[i] == 0), t);
+                         and ((t - range_[i].first) % thinning_[i] == 0), t, i);
     }
 }
